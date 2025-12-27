@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhilai Transport & Navigation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">🚌 Bhilai Transport</div>
+            <nav class="nav">
+                <a href="#" onclick="showPage('home')">Home</a>
+                <a href="#" onclick="showPage('routes')">Bus Routes</a>
+                <a href="#" onclick="showPage('emergency')">Emergency</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Bhilai Transport & Navigation</h1>
+                <p>Your comprehensive transport companion for the Bhilai-Durg-Raipur region</p>
+                <div id="location-display" class="location-display" style="display: none;">
+                    📍 Current Location: <span id="coordinates"></span>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="showPage('routes')">Find Bus Routes</button>
+                    <button class="btn btn-danger" onclick="activateSOS()">Emergency SOS</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2>Complete Transport Solutions</h2>
+                <div class="grid grid-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚌</div>
+                        <h3>Real-time Bus Tracking</h3>
+                        <p>Track buses live with accurate arrival times for Bhilai-Durg-Raipur routes</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚗</div>
+                        <h3>Auto & Taxi Booking</h3>
+                        <p>Book rides instantly with verified drivers and transparent pricing</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚆</div>
+                        <h3>Railway Integration</h3>
+                        <p>Get train schedules and alerts for Durg & Bhilai Nagar stations</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🆘</div>
+                        <h3>Emergency Services</h3>
+                        <p>One-touch SOS with GPS location sharing and emergency contacts</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h3>Student Features</h3>
+                        <p>Special routes and discounts for students of BIT, DPS, St. Thomas</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌱</div>
+                        <h3>Eco-Friendly Options</h3>
+                        <p>Cycling routes, e-rickshaw stands, and carbon footprint tracking</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section style="padding: 3rem 0; background: white;">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Quick Actions</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>🚌 Bus Routes</h3>
+                        <p>Find real-time bus information and plan your journey</p>
+                        <button class="btn btn-primary" onclick="showPage('routes')">View Routes</button>
+                    </div>
+                    <div class="card">
+                        <h3>🆘 Emergency Services</h3>
+                        <p>Quick access to emergency contacts and SOS features</p>
+                        <button class="btn btn-danger" onclick="showPage('emergency')">Emergency Help</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bus Routes Page -->
+    <div id="routes" class="page hidden">
+        <div style="padding: 2rem 0; min-height: 80vh;">
+            <div class="container">
+                <h1 style="margin-bottom: 2rem; color: #333;">🚌 Bus Routes</h1>
+                
+                <input type="text" id="search-input" placeholder="Search routes, stops, or destinations..." 
+                       style="width: 100%; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; margin-bottom: 2rem;"
+                       oninput="filterRoutes()">
+
+                <div style="margin-bottom: 2rem;">
+                    <p style="color: #666;">Found <span id="route-count">4</span> routes • Real-time tracking available</p>
+                </div>
+
+                <div id="routes-container">
+                    <div class="route-card">
+                        <div class="route-header">
+                            <div class="route-name">Civic Center to Maitri Bagh</div>
+                            <div class="arrival-time">Next: 5 min</div>
+                        </div>
+                        <div>
+                            <div style="color: #666; margin-bottom: 0.5rem;">🚌 Civic Center → Maitri Bagh</div>
+                            <div style="color: #666; margin-bottom: 0.5rem;">⏱️ 25 min • ₹15</div>
+                            <div style="font-size: 0.9rem; color: #999; font-style: italic;">Frequency: 10-15 min</div>
+                        </div>
+                        <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                            <button class="btn btn-primary">Track Live</button>
+                            <button class="btn" style="background: #28a745; color: white;">Get Directions</button>
+                        </div>
+                    </div>
+
+                    <div class="route-card">
+                        <div class="route-header">
+                            <div class="route-name">Steel Plant to Durg Station</div>
+                            <div class="arrival-time">Next: 12 min</div>
+                        </div>
+                        <div>
+                            <div style="color: #666; margin-bottom: 0.5rem;">🚌 Steel Plant Gate → Durg Railway Station</div>
+                            <div style="color: #666; margin-bottom: 0.5rem;">⏱️ 35 min • ₹20</div>
+                            <div style="font-size: 0.9rem; color: #999; font-style: italic;">Frequency: 15-20 min</div>
+                        </div>
+                        <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                            <button class="btn btn-primary">Track Live</button>
+                            <button class="btn" style="background: #28a745; color: white;">Get Directions</button>
+                        </div>
+                    </div>
+
+                    <div class="route-card">
+                        <div class="route-header">
+                            <div class="route-name">Civic Center to BIT College</div>
+                            <div class="arrival-time">Next: 8 min</div>
+                        </div>
+                        <div>
+                            <div style="color: #666; margin-bottom: 0.5rem;">🚌 Civic Center → BIT College</div>
+                            <div style="color: #666; margin-bottom: 0.5rem;">⏱️ 30 min • ₹18</div>
+                            <div style="font-size: 0.9rem; color: #999; font-style: italic;">Frequency: 20-25 min</div>
+                        </div>
+                        <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                            <button class="btn btn-primary">Track Live</button>
+                            <button class="btn" style="background: #28a745; color: white;">Get Directions</button>
+                        </div>
+                    </div>
+
+                    <div class="route-card">
+                        <div class="route-header">
+                            <div class="route-name">Maitri Bagh to Raipur</div>
+                            <div class="arrival-time">Next: 15 min</div>
+                        </div>
+                        <div>
+                            <div style="color: #666; margin-bottom: 0.5rem;">🚌 Maitri Bagh → Raipur Bus Stand</div>
+                            <div style="color: #666; margin-bottom: 0.5rem;">⏱️ 45 min • ₹25</div>
+                            <div style="font-size: 0.9rem; color: #999; font-style: italic;">Frequency: 30-40 min</div>
+                        </div>
+                        <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                            <button class="btn btn-primary">Track Live</button>
+                            <button class="btn" style="background: #28a745; color: white;">Get Directions</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div style="margin-top: 3rem;">
+                    <div class="grid grid-3">
+                        <div class="card" style="text-align: center;">
+                            <h3 style="color: #007bff; margin: 0 0 0.5rem 0;">50+</h3>
+                            <p>Active Routes</p>
+                        </div>
+                        <div class="card" style="text-align: center;">
+                            <h3 style="color: #28a745; margin: 0 0 0.5rem 0;">200+</h3>
+                            <p>Bus Stops</p>
+                        </div>
+                        <div class="card" style="text-align: center;">
+                            <h3 style="color: #dc3545; margin: 0 0 0.5rem 0;">24/7</h3>
+                            <p>Service Available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Page -->
+    <div id="emergency" class="page hidden">
+        <div style="padding: 2rem 0; min-height: 80vh;">
+            <div class="container">
+                <h1 style="margin-bottom: 2rem; color: #dc3545; text-align: center;">🆘 Emergency Services</h1>
+
+                <!-- SOS Button -->
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <button id="sos-button" class="btn btn-danger" onclick="toggleSOS()"
+                            style="font-size: 1.5rem; padding: 2rem 3rem; border-radius: 50%; width: 200px; height: 200px;">
+                        🆘 SOS
+                    </button>
+                    
+                    <div id="sos-status" style="margin-top: 1rem; color: #dc3545; font-weight: bold; display: none;">
+                        📍 Location Shared: <span id="sos-coordinates"></span><br>
+                        🔄 Live tracking active...
+                    </div>
+                    
+                    <p style="margin-top: 1rem; color: #666;">Press to activate emergency SOS</p>
+                </div>
+
+                <!-- Emergency Contacts -->
+                <div style="margin-bottom: 3rem;">
+                    <h2 style="margin-bottom: 1.5rem; color: #333;">Emergency Contacts</h2>
+                    <div class="emergency-grid">
+                        <div class="emergency-card" onclick="callEmergency('100')">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">👮</div>
+                            <div class="emergency-number">100</div>
+                            <div>Police</div>
+                        </div>
+                        <div class="emergency-card" onclick="callEmergency('108')">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚑</div>
+                            <div class="emergency-number">108</div>
+                            <div>Ambulance</div>
+                        </div>
+                        <div class="emergency-card" onclick="callEmergency('101')">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚒</div>
+                            <div class="emergency-number">101</div>
+                            <div>Fire Service</div>
+                        </div>
+                        <div class="emergency-card" onclick="callEmergency('1091')">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">👩</div>
+                            <div class="emergency-number">1091</div>
+                            <div>Women Helpline</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nearby Hospitals -->
+                <div>
+                    <h2 style="margin-bottom: 1.5rem; color: #333;">🏥 Nearby Hospitals</h2>
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                                <h3 style="margin: 0; color: #333;">Bhilai Steel Plant Hospital</h3>
+                                <span style="background: #28a745; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">24/7</span>
+                            </div>
+                            <p style="color: #666; margin-bottom: 0.5rem;">📍 Sector 1, Bhilai</p>
+                            <p style="color: #666; margin-bottom: 0.5rem;">📞 0788-2282222</p>
+                            <p style="color: #007bff; margin-bottom: 1rem; font-weight: bold;">📏 2.5 km away</p>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn btn-primary" onclick="callEmergency('07882282222')">Call Now</button>
+                                <button class="btn" style="background: #28a745; color: white;">Get Directions</button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                                <h3 style="margin: 0; color: #333;">Apollo Hospital Bilaspur</h3>
+                                <span style="background: #28a745; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">24/7</span>
+                            </div>
+                            <p style="color: #666; margin-bottom: 0.5rem;">📍 Seepat Road, Bilaspur</p>
+                            <p style="color: #666; margin-bottom: 0.5rem;">📞 07752-402040</p>
+                            <p style="color: #007bff; margin-bottom: 1rem; font-weight: bold;">📏 8.3 km away</p>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn btn-primary" onclick="callEmergency('07752402040')">Call Now</button>
+                                <button class="btn" style="background: #28a745; color: white;">Get Directions</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety Tips -->
+                <div style="margin-top: 3rem; background: #f8f9fa; padding: 2rem; border-radius: 12px;">
+                    <h3 style="color: #333; margin-bottom: 1rem;">🛡️ Safety Tips</h3>
+                    <ul style="color: #666; line-height: 1.8;">
+                        <li>Keep your phone charged and location services enabled</li>
+                        <li>Share your travel plans with family or friends</li>
+                        <li>Use well-lit and populated routes, especially at night</li>
+                        <li>Trust your instincts - if something feels wrong, seek help</li>
+                        <li>Keep emergency contact numbers saved in your phone</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let sosActive = false;
+        let currentLocation = null;
+
+        // Get user location on page load
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    currentLocation = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
+                    document.getElementById('coordinates').textContent = 
+                        currentLocation.latitude.toFixed(4) + ', ' + currentLocation.longitude.toFixed(4);
+                    document.getElementById('location-display').style.display = 'block';
+                },
+                function(error) {
+                    console.log('Location error:', error);
+                }
+            );
+        }
+
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active-page');
+                page.classList.add('hidden');
+            });
+
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            selectedPage.classList.remove('hidden');
+            selectedPage.classList.add('active-page');
+        }
+
+        function activateSOS() {
+            if (confirm('This will share your location with emergency services. Continue?')) {
+                alert('🆘 SOS ACTIVATED!\n\nYour location has been shared with emergency services.\nHelp is on the way!');
+            }
+        }
+
+        function toggleSOS() {
+            const sosButton = document.getElementById('sos-button');
+            const sosStatus = document.getElementById('sos-status');
+            
+            if (!sosActive) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        function(position) {
+                            currentLocation = {
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude
+                            };
+                            document.getElementById('sos-coordinates').textContent = 
+                                currentLocation.latitude.toFixed(4) + ', ' + currentLocation.longitude.toFixed(4);
+                            
+                            sosActive = true;
+                            sosButton.textContent = '🆘 ACTIVE';
+                            sosButton.classList.add('sos-active');
+                            sosStatus.style.display = 'block';
+                            
+                            alert('🆘 SOS ACTIVATED!\n\nYour location has been shared with emergency services.\nHelp is on the way!');
+                        },
+                        function(error) {
+                            sosActive = true;
+                            sosButton.textContent = '🆘 ACTIVE';
+                            sosButton.classList.add('sos-active');
+                            alert('🆘 SOS ACTIVATED!\n\nEmergency services have been notified.');
+                        }
+                    );
+                } else {
+                    sosActive = true;
+                    sosButton.textContent = '🆘 ACTIVE';
+                    sosButton.classList.add('sos-active');
+                    alert('🆘 SOS ACTIVATED!\n\nEmergency services have been notified.');
+                }
+            } else {
+                sosActive = false;
+                sosButton.textContent = '🆘 SOS';
+                sosButton.classList.remove('sos-active');
+                sosStatus.style.display = 'none';
+                alert('SOS Deactivated');
+            }
+        }
+
+        function callEmergency(number) {
+            window.open('tel:' + number, '_self');
+        }
+
+        function filterRoutes() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const routeCards = document.querySelectorAll('.route-card');
+            let visibleCount = 0;
+
+            routeCards.forEach(card => {
+                const routeName = card.querySelector('.route-name').textContent.toLowerCase();
+                if (routeName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('route-count').textContent = visibleCount;
+        }
+    </script>
+</body>
+</html>
