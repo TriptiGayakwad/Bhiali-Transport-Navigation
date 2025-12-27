@@ -1,13 +1,13 @@
 # 🚌 Bhilai Transport & Navigation App
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-blue?style=for-the-badge)](https://yourusername.github.io/your-repo-name)
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/yourusername/your-repo-name)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-blue?style=for-the-badge)](https://triptigayakwad.github.io/Bhiali-Transport-Navigation/)
+
 
 Hey there! Welcome to the Bhilai Transport & Navigation App - your friendly neighborhood transport companion for getting around the Bhilai-Durg-Raipur region.
 
 ## 🌐 Live Demo
 
-**Try it now:** [https://yourusername.github.io/your-repo-name](https://yourusername.github.io/your-repo-name)
+**Try it now:** [https://triptigayakwad.github.io/Bhiali-Transport-Navigation/](https://triptigayakwad.github.io/Bhiali-Transport-Navigation/)
 
 *Just click the link above to use the app immediately - no installation required!*
 
@@ -43,7 +43,7 @@ I built this because navigating public transport in our region can be a real pai
 ## How to Use It
 
 ### 🌐 **Option 1: Use Online (Recommended)**
-**Just visit:** [https://yourusername.github.io/your-repo-name](https://yourusername.github.io/your-repo-name)
+**Just visit:** [https://triptigayakwad.github.io/Bhiali-Transport-Navigation/](https://triptigayakwad.github.io/Bhiali-Transport-Navigation/)
 
 No downloads, no setup - works instantly on any device!
 
@@ -112,7 +112,7 @@ This project is open source and available under the MIT License. Feel free to us
 
 This app is deployed and live! You can:
 
-- **Use it online:** [Live Demo](https://yourusername.github.io/your-repo-name)
+- **Use it online:** [Live Demo](https://triptigayakwad.github.io/Bhiali-Transport-Navigation/)
 - **Deploy your own copy:** 
   - Fork this repository
   - Enable GitHub Pages in Settings
